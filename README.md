@@ -1,6 +1,6 @@
 # Bayesian Causal Discovery 
 
-This repository contains the replication files for my **final term paper** in the **2nd-year PhD Bayesian Modeling course** at Goethe University Frankfurt. The project explores **Bayesian causal discovery** using **Gaussian Bayesian networks, the PC algorithm, and Order MCMC**, with a Monte Carlo simulation to evaluate performance.
+This repository contains the replication files for my **final term paper** in the **2nd-year PhD Bayesian Modeling course** at Goethe University Frankfurt. This paper compares **Bayesian** and **constraint-based causal discovery methods** in recovering the underlying structure of Bayesian networks. I conduct a Monte Carlo simulation study evaluating the **order-MCMC** algorithm and the **PC algorithm** across varying sample sizes, network sizes, sparsity levels, and edge strengths. 
 
 ## Replication Instructions
 To replicate the results, download the following files:

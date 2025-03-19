@@ -2,7 +2,7 @@
 
 This repository contains the replication files for my **final term paper** in the **2nd-year PhD Bayesian Modeling course** at Goethe University Frankfurt. The project explores **Bayesian causal discovery** using **Gaussian Bayesian networks, the PC algorithm, and Order MCMC**, with a Monte Carlo simulation to evaluate performance.
 
-## 📂 Replication Instructions
+## Replication Instructions
 To replicate the results, download the following files:
 - The **`Functions/` folder** (contains all necessary functions)
 - The **`run_sim.R`** file (main script)
@@ -40,7 +40,7 @@ This folder contains all the necessary functions:
 
 ---
 
-## 📦 Required R Packages
+##  Required R Packages
 All required packages will be installed automatically when running `run_sim.R`. The list of packages used is:
 ```r
 c("bnlearn","igraph", "BiDAG", "ggplot2", "dplyr", "gridExtra")

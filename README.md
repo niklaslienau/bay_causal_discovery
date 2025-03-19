@@ -19,7 +19,7 @@ To replicate the results, download the following files:
 ---
 
 ##  File Structure
-### ** `Functions/` Folder**
+### **`Functions/`Folder**
 This folder contains all the necessary functions:
 
 1. **`packages.R`** → Loads and installs required R packages.
@@ -32,7 +32,7 @@ This folder contains all the necessary functions:
 8. **`final_plots.R`** → Generates the final plots presented in the paper.
 9. **`mcmc_diagnostics.R`** → Runs independent MCMC chains and provides trace plots.
 
-### ** `run_sim.R`**
+### **`run_sim.R`**
 - This is the **main replication script**.
 - It first **sources** all functions from the `Functions/` folder.
 - It allows users to set **simulation settings**.

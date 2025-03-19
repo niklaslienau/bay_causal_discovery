@@ -6,8 +6,7 @@
 # Install Rgraphviz from Bioconductor
 #BiocManager::install("Rgraphviz")
 
-library(BiDAG) # Implements Kuipers, Suter, Moffa 2020 Paper
-library(igraph)
+
 
 
 

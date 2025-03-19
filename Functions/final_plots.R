@@ -1,6 +1,4 @@
-library(ggplot2)
-library(dplyr)
-library(gridExtra)
+
 
 
 ### List to dataframe
@@ -61,9 +59,7 @@ convert_results_to_df <- function(final_res) {
 
 #SHD 
 shd_plot <- function(results_df) {
-  library(ggplot2)
-  library(gridExtra)
-  library(dplyr)
+  
   
   # Function to create SHD plots for different grouping variables
   create_shd_plot <- function(group_var, x_label, custom_labels = NULL, conditional_grouping = NULL) {
@@ -145,13 +141,6 @@ shd_plot <- function(results_df) {
 
 #TPR & FPR
 
-library(ggplot2)
-library(dplyr)
-library(gridExtra)
-
-library(ggplot2)
-library(dplyr)
-library(gridExtra)
 
 # Function to create TPR vs FPR scatter plots across different (num_nodes, num_samples) conditions
 tpr_fpr_scatterplot <- function(final_res_df) {

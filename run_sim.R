@@ -1,20 +1,22 @@
 
 ################ Source Functions ################
 
+#Load (and if necessary install) Packages
+source("Functions/packages.R")
 #Sample from Bayesian Network
-source("data_sim.R")
+source("Functions/data_sim.R")
 #PC algorithm 
-source("pc_algorithm.R")
+source("Functions/pc_algorithm.R")
 #Order MCMC Algorithm
-source("order_mcmc.R")
+source("Functions/order_mcmc.R")
 #evaluation metrics 
-source("skeleton_eval.R")
+source("Functions/eval_metrics.R")
 #Monte Carlo Simulation 
-source("monte_carlo.R")
+source("Functions/montecarlo.R")
 #Monte Carlo across all simulation designs
-source("simulation_design.R")
-#Analysis Plots
-source("analysis.R")
+source("Functions/simulation_design.R")
+#Result Plots
+source("Functions/final_plots.R")
 
 
 ################ Set parameters for simulation  ################
@@ -60,5 +62,8 @@ shd_plot(final_res_df)
 # Plot the True/False Positive Ratio Analyses
 tpr_fpr_scatterplot(final_res_df)
 
+
+############## MCMC Diagnostics
+source("Functions/mcmc_diagnostics.R")
 
 

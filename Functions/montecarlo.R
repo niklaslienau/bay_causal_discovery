@@ -2,15 +2,6 @@
 
 #Source Function
 
-#Sample from Bayesian Network
-source("data_sim.R")
-#PC algorithm 
-source("pc_algorithm.R")
-#Order MCMC Algorithm
-source("order_mcmc.R")
-#evaluation metrics 
-source("skeleton_eval.R")
-
 
 run_monte_carlo <- function(num_iterations = 100, num_nodes = 10, num_samples = 500, edge_prob = 0.2, beta_range= c(1,3)) {
   

@@ -1,13 +1,4 @@
 
-library(BiDAG) # Implements Kuipers, Suter, Moffa 2020 Paper
-library(igraph)
-library(ggplot2)
-library(gridExtra)
-library(coda)
-
-#Source order_mcmc.R file to load mcmc algorithm function
-source("order_mcmc.R")
-
 
 # Function to run multiple independent MCMC chains and return their log-likelihood traces
 run_multiple_chains <- function(num_nodes, num_samples, num_chains , iterations = 100000, stepsave = 5000) {
@@ -38,6 +29,7 @@ run_multiple_chains <- function(num_nodes, num_samples, num_chains , iterations 
   return(trace_df_final)
 }
 
+set.seed(123)
 # Run MCMC chains for all conditions
 trace_5_100   <- run_multiple_chains(num_nodes = 5, num_samples = 100, num_chains = 5)
 trace_5_1000  <- run_multiple_chains(num_nodes = 5, num_samples = 1000, num_chains = 5)

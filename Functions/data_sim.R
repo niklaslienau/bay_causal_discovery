@@ -4,8 +4,7 @@
 #2. num_samples= Sample Size
 #3. edge_prob = controls density/sparsity
 #4. beta_range = controls parameter size in conditonal distributions
-library(bnlearn)  # For DAG structure
-library(igraph)   # For DAG visualization
+
 
 
 simulate_GBN <- function(num_nodes, num_samples, edge_prob, beta_range = c(1, 3)) {

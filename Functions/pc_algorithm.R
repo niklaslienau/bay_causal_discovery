@@ -1,5 +1,4 @@
-library(bnlearn)
-library(igraph)
+
 
 # Function to run a constraint-based causal discovery method (PC algo) using bnlearn
 run_PC_bnlearn <- function(data) {

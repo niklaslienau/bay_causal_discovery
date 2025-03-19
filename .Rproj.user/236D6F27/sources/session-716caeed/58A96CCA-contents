@@ -1,0 +1,116 @@
+
+### Generate Simulation Settings 
+
+generate_settings_list <- function(num_samples_set, num_nodes_set, edge_prob_set, beta_range_set) {
+  # Check that num_nodes_set and edge_prob_set have the same length
+  if (length(num_nodes_set) != length(edge_prob_set)) {
+    stop("num_nodes_set and edge_prob_set must have the same length.")
+  }
+  
+  settings_list <- list()
+  
+  # Loop through each num_nodes entry and its corresponding edge_prob values
+  for (i in seq_along(num_nodes_set)) {
+    num_nodes <- num_nodes_set[i]
+    edge_probs <- edge_prob_set[[i]]  # Extract vector of edge probabilities
+    
+    # Create all combinations of num_samples, edge_probs, and beta_range
+    temp_df <- expand.grid(
+      num_samples = num_samples_set,
+      edge_prob = edge_probs,
+      beta_min = sapply(beta_range_set, function(x) x[1]),
+      beta_max = sapply(beta_range_set, function(x) x[2])
+    )
+    
+    # Convert each row into a list entry
+    for (j in 1:nrow(temp_df)) {
+      setting_name <- paste0(
+        "nodes_", num_nodes, 
+        "_samples_", temp_df$num_samples[j],
+        "_edge_", temp_df$edge_prob[j],
+        "_beta_", temp_df$beta_min[j], "_", temp_df$beta_max[j]
+      )
+      
+      settings_list[[setting_name]] <- list(
+        num_samples = temp_df$num_samples[j],
+        num_nodes = num_nodes,  # Fixed for this iteration
+        edge_prob = temp_df$edge_prob[j],
+        beta_range = c(temp_df$beta_min[j], temp_df$beta_max[j])
+      )
+    }
+  }
+  
+  return(settings_list)
+}
+
+
+
+
+######## SIMULATION ACROSS ALL SETTINGS ################
+
+run_monte_carlo_across_settings <- function(num_iterations = 100, settings_list) {
+  
+  # Initialize results list
+  results <- list()
+  
+  for (setting_name in names(settings_list)) {
+    # Extract parameter values from settings list
+    setting <- settings_list[[setting_name]]
+    num_nodes <- setting$num_nodes
+    num_samples <- setting$num_samples
+    edge_prob <- setting$edge_prob
+    beta_range <- setting$beta_range  
+    
+    cat("Running Monte Carlo for", setting_name, "\n")
+    
+    # Run Monte Carlo for this setting
+    mc_results <- run_monte_carlo(
+      num_iterations = num_iterations,
+      num_nodes = num_nodes,
+      num_samples = num_samples,
+      edge_prob = edge_prob
+    )
+    
+    # Store results under the appropriate name
+    results[[setting_name]] <- mc_results
+  }
+  
+  return(results)
+}
+
+## Compute averages over all monte carlo runs
+
+compute_summary_results <- function(sim_results, quantiles = c(0.25, 0.75)) {
+  summary_results <- list()
+  
+  for (setting_name in names(sim_results)) {
+    setting <- sim_results[[setting_name]]
+    
+    # Function to compute summary stats (mean + requested quantiles)
+    compute_stats <- function(metric_values) {
+      c(mean = mean(metric_values), quantile(metric_values, quantiles))
+    }
+    
+    # Compute mean and requested quantiles for each metric
+    summary_results[[setting_name]] <- list(
+      PC = list(
+        TPR = compute_stats(setting$PC$TPR),
+        FPR = compute_stats(setting$PC$FPR),
+        SHD = compute_stats(setting$PC$SHD)
+      ),
+      MCMC = list(
+        TPR = compute_stats(setting$MCMC$TPR),
+        FPR = compute_stats(setting$MCMC$FPR),
+        SHD = compute_stats(setting$MCMC$SHD),
+        runtime = compute_stats(setting$MCMC$runtime)
+      )
+    )
+  }
+  
+  return(summary_results)
+}
+
+
+
+
+

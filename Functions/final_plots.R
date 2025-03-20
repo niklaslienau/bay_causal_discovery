@@ -134,7 +134,15 @@ shd_plot <- function(results_df) {
   p4 <- create_shd_plot("beta_index", "Density/Sparsity", custom_labels = c("1" = "Sparse", "2" = "Dense"))
   
   # Arrange plots in a 2x2 grid
+  
+# Detect OS and set appropriate graphics device
+if (Sys.info()["sysname"] == "Darwin") {  # macOS
   quartz()
+} else if (Sys.info()["sysname"] == "Windows") {  # Windows
+  windows()
+} else {  # Linux / other Unix-like systems
+  X11()
+}
   grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
 }
 
@@ -216,7 +224,15 @@ tpr_fpr_scatterplot <- function(final_res_df) {
   )
   
   # Arrange the 2x2 grid with a single legend on the right
-  quartz()
+  
+  # Detect OS and set appropriate graphics device
+  if (Sys.info()["sysname"] == "Darwin") {  # macOS
+    quartz()
+  } else if (Sys.info()["sysname"] == "Windows") {  # Windows
+    windows()
+  } else {  # Linux / other Unix-like systems
+    X11()
+  }
   grid.arrange(
     grobs = c(plot_list, list(legend_plot)),
     layout_matrix = rbind(c(1, 2, 5), c(3, 4, 5)),  # Legend in the last column

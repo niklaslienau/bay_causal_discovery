@@ -56,8 +56,14 @@ p4 <- plot_trace(trace_15_1000, "Nodes: 15, Samples: 1000")
 p5 <- plot_trace(trace_25_100, "Nodes: 25, Samples: 100")
 p6 <- plot_trace(trace_25_1000, "Nodes: 25, Samples: 1000")
 
-# Open Quartz window
-quartz()
+# Detect OS and set appropriate graphics device
+if (Sys.info()["sysname"] == "Darwin") {  # macOS
+  quartz()
+} else if (Sys.info()["sysname"] == "Windows") {  # Windows
+  windows()
+} else {  # Linux / other Unix-like systems
+  X11()
+}
 
 # Arrange in a 3x2 grid
 grid.arrange(p1, p2, p3, p4, p5, p6, nrow = 3, ncol = 2)

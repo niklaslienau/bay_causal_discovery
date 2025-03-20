@@ -61,7 +61,7 @@ if (Sys.info()["sysname"] == "Darwin") {  # macOS
   quartz()
 } else if (Sys.info()["sysname"] == "Windows") {  # Windows
   windows()
-} else {  # Linux / other Unix-like systems
+} else {  # Linux 
   X11()
 }
 
